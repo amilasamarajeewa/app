@@ -80,42 +80,45 @@
 
   <!-- Script to load data/apps.json -->
   <script>
-    async function loadApps() {
-      const container = document.getElementById('apps-container');
-      try {
-        const response = await fetch('data/apps.json');
-        if (!response.ok) throw new Error('Failed to load apps');
-        const apps = await response.json();
+  async function loadApps() {
+    const container = document.getElementById('apps-container');
+    try {
+      const response = await fetch('data/apps.json?' + new Date().getTime());
+      if (!response.ok) throw new Error('File not found');
+      const apps = await response.json();
 
-        if (!apps || apps.length === 0) {
-          container.innerHTML = '<p class="col-span-full text-center text-slate-400">No apps currently listed.</p>';
-          return;
-        }
-
-        container.innerHTML = apps.map(app => `
-          <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 hover:border-slate-700 transition flex flex-col justify-between">
-            <div class="flex items-start space-x-4 mb-4">
-              <img src="${app.icon || 'assets/logo.png'}" alt="${app.title}" class="w-16 h-16 rounded-xl object-cover bg-slate-800 flex-shrink-0">
-              <div>
-                <h3 class="font-bold text-lg text-slate-100 line-clamp-1">${app.title}</h3>
-                <p class="text-xs text-slate-400 mt-1 line-clamp-2">${app.description || ''}</p>
-              </div>
-            </div>
-            <a href="${app.url}" target="_blank" rel="noopener" 
-               class="w-full mt-4 text-center bg-slate-800 hover:bg-slate-700 text-blue-400 font-medium py-2 rounded-lg text-sm transition">
-              Get on Google Play
-            </a>
-          </div>
-        `).join('');
-      } catch (err) {
-        container.innerHTML = `
-          <div class="col-span-full text-center py-8 text-slate-400">
-            <p>Visit our developer profile directly to view all published apps.</p>
-            <a href="https://play.google.com/store/apps/dev?id=6407847081352449241" target="_blank" class="text-blue-400 underline mt-2 inline-block">Google Play Store</a>
-          </div>`;
+      if (!apps || apps.length === 0) {
+        throw new Error('Empty app list');
       }
+
+      container.innerHTML = apps.map(app => `
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 hover:border-slate-700 transition flex flex-col justify-between">
+          <div class="flex items-start space-x-4 mb-4">
+            <img src="${app.icon || 'assets/logo.png'}" alt="${app.title}" class="w-16 h-16 rounded-xl object-cover bg-slate-800 flex-shrink-0" onerror="this.src='assets/logo.png'">
+            <div>
+              <h3 class="font-bold text-lg text-slate-100 line-clamp-1">${app.title}</h3>
+              <p class="text-xs text-slate-400 mt-1 line-clamp-2">${app.description || 'Google Play Application'}</p>
+            </div>
+          </div>
+          <a href="${app.url}" target="_blank" rel="noopener" 
+             class="w-full mt-4 text-center bg-slate-800 hover:bg-slate-700 text-blue-400 font-medium py-2 rounded-lg text-sm transition">
+            Get on Google Play
+          </a>
+        </div>
+      `).join('');
+    } catch (err) {
+      // Fallback display if scraping fails entirely
+      container.innerHTML = `
+        <div class="col-span-full text-center py-8 bg-slate-900/40 rounded-xl border border-slate-800">
+          <p class="text-slate-300 font-medium">Explore all AS TechnoArt apps on Google Play</p>
+          <a href="https://play.google.com/store/apps/dev?id=6407847081352449241" target="_blank" rel="noopener" 
+             class="inline-block mt-4 bg-blue-600 hover:bg-blue-500 text-white font-medium px-6 py-2.5 rounded-lg text-sm transition">
+            Open AS TechnoArt Developer Page
+          </a>
+        </div>`;
     }
-    loadApps();
-  </script>
+  }
+  loadApps();
+</script>
 </body>
 </html>
