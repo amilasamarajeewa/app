@@ -1,20 +1,20 @@
 [
   {
-    "title": "ලග්න",
-    "icon": "",
-    "description": "Available on Google Play",
+    "title": "LAGNAPALAPALA",
+    "icon": "assets/logo.png",
+    "description": "Official application on Google Play Store.",
     "url": "https://play.google.com/store/apps/details?id=com.astechnoart.lagnapalapala"
   },
   {
-    "title": "App",
-    "icon": "https://play-lh.googleusercontent.com/t98a89nWCKVgZvvS6ADQlca2jF0h_CTVFcExgJBN3qZeJ8FOWr3TDmPysGdu5n_lLu2e_TklEC-b0dEBlyPa8Q=s256-rw",
-    "description": "Available on Google Play",
+    "title": "ATH BEHETH",
+    "icon": "assets/logo.png",
+    "description": "Official application on Google Play Store.",
     "url": "https://play.google.com/store/apps/details?id=com.as_tehnoart.ath_beheth"
   },
   {
-    "title": "App",
-    "icon": "https://play-lh.googleusercontent.com/w0aZ3goYodfgW63SEEACzaWDP7afF89_h7AYZeG5GYoZy_rn_DgGkqpO2NLW-ETpxlVlgX45sIvxDoIBFJroNQ=s256-rw",
-    "description": "Available on Google Play",
+    "title": "SIHINA PALAPALA",
+    "icon": "assets/logo.png",
+    "description": "Official application on Google Play Store.",
     "url": "https://play.google.com/store/apps/details?id=com.as_tehnoart.sihina_palapala"
   }
 ]
